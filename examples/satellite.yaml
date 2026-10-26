@@ -1,0 +1,69 @@
+schema_version: "1.0"
+kind: artificial_satellite
+id: learning-satellite-01
+name: 学習用人工衛星
+description: データから立体と物語を作るための教育用サンプル
+purpose: 地球観測の仕組みを学ぶ
+archetype: earth_observation
+specifications:
+  dimensions_m:
+    x: 1.0
+    y: 1.0
+    z: 1.5
+  mass_kg: 120
+  orbit:
+    type: low_earth_orbit
+    altitude_km: 500
+    inclination_deg: 97
+components:
+  - id: body
+    type: body
+    name: 本体
+    role: 機器と計算機を収容する
+    dimensions_m: {x: 1.0, y: 1.0, z: 1.5}
+    material: aluminum
+    color: "#b7c4d1"
+  - id: solar-panel-left
+    type: solar_panel
+    name: 左太陽電池パネル
+    role: 太陽光から電力を得る
+    dimensions_m: {x: 1.8, y: 0.08, z: 0.8}
+    material: solar_cells
+    color: "#24508a"
+    mount: body
+  - id: solar-panel-right
+    type: solar_panel
+    name: 右太陽電池パネル
+    role: 太陽光から電力を得る
+    dimensions_m: {x: 1.8, y: 0.08, z: 0.8}
+    material: solar_cells
+    color: "#24508a"
+    mount: body
+  - id: antenna
+    type: antenna
+    name: 通信アンテナ
+    role: 地上局とデータを送受信する
+    color: "#eeeeee"
+    mount: body
+behaviors:
+  - id: capture-image
+    trigger: 地表を観測するタイミング
+    action: センサーで画像を取得する
+    result: 観測データを保存する
+  - id: send-data
+    trigger: 地上局が通信可能な範囲に入る
+    action: アンテナから観測データを送信する
+    result: 地上でデータを利用できる
+story:
+  premise: 小さな人工衛星が地球を観測し、地上の人々に変化を知らせる
+  audience: 初学者
+  learning_goals:
+    - 人工衛星の主要部品を知る
+    - 太陽電池と通信アンテナの役割を説明できる
+scene:
+  units: m
+  origin: center
+outputs:
+  - story
+  - svg
+  - blender
